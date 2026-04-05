@@ -1,0 +1,364 @@
+<!doctype html>
+<html lang="it">
+ <head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>OrientaUniTe - Orientamento Universitario</title>
+  <script src="/_sdk/element_sdk.js"></script>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    html, body {
+      height: 100%;
+      width: 100%;
+    }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+      background-color: #FFFFFF;
+      color: #1F1F1F;
+    }
+
+    .wrapper {
+      width: 100%;
+      height: 100%;
+      overflow-auto;
+      background-color: #FFFFFF;
+    }
+
+    /* HEADER */
+    .header {
+      width: 100%;
+      height: 80px;
+      background-color: #A61E1E;
+      display: flex;
+      align-items: center;
+      padding: 0 40px;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
+
+    .header-content {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      width: 100%;
+      max-width: 1440px;
+      margin: 0 auto;
+    }
+
+    .logo {
+      font-size: 24px;
+      font-weight: 700;
+      color: #FFFFFF;
+      letter-spacing: 0.5px;
+    }
+
+    .nav {
+      display: flex;
+      gap: 30px;
+      color: #FFFFFF;
+      font-size: 14px;
+    }
+
+    /* HERO SECTION */
+    .hero {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      max-width: 1440px;
+      margin: 0 auto;
+      padding: 60px 80px;
+      gap: 80px;
+    }
+
+    .hero-text {
+      flex: 0 0 600px;
+    }
+
+    .hero-title {
+      font-size: 48px;
+      font-weight: 700;
+      color: #1F1F1F;
+      margin-bottom: 20px;
+      line-height: 1.2;
+    }
+
+    .hero-description {
+      font-size: 16px;
+      color: #666666;
+      margin-bottom: 30px;
+      line-height: 1.6;
+    }
+
+    .btn {
+      background-color: #A61E1E;
+      color: #FFFFFF;
+      border: none;
+      padding: 16px 32px;
+      font-size: 16px;
+      font-weight: 600;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+      width: 260px;
+      height: 55px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .btn:hover {
+      background-color: #8C1A1A;
+    }
+
+    .hero-image {
+      flex: 0 0 520px;
+      height: 320px;
+      background-color: #F2F2F2;
+      border: 2px solid #E0E0E0;
+      border-radius: 8px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 18px;
+      color: #666666;
+    }
+
+    /* VANTAGGI SECTION */
+    .vantaggi-section {
+      background-color: #FFFFFF;
+      padding: 80px 80px;
+      text-align: center;
+    }
+
+    .section-title {
+      font-size: 36px;
+      font-weight: 700;
+      color: #1F1F1F;
+      margin-bottom: 60px;
+      letter-spacing: -0.5px;
+    }
+
+    .vantaggi-container {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 40px;
+      max-width: 1440px;
+      margin: 0 auto;
+    }
+
+    .vantaggio-box {
+      background-color: #FFFFFF;
+      border: 2px solid #E0E0E0;
+      border-radius: 8px;
+      padding: 30px;
+      text-align: left;
+      transition: all 0.3s ease;
+      height: 160px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+
+    .vantaggio-box:hover {
+      border-color: #A61E1E;
+      box-shadow: 0 8px 16px rgba(166, 30, 30, 0.1);
+    }
+
+    .vantaggio-title {
+      font-size: 18px;
+      font-weight: 700;
+      color: #1F1F1F;
+      margin-bottom: 12px;
+    }
+
+    .vantaggio-desc {
+      font-size: 14px;
+      color: #666666;
+      line-height: 1.6;
+    }
+
+    /* CTA SECTION */
+    .cta-section {
+      background-color: #FFFFFF;
+      padding: 100px 80px;
+      text-align: center;
+    }
+
+    .cta-title {
+      font-size: 36px;
+      font-weight: 700;
+      color: #1F1F1F;
+      margin-bottom: 50px;
+      letter-spacing: -0.5px;
+    }
+
+    /* FRASE FINALE */
+    .frase-box {
+      max-width: 1440px;
+      margin: 0 auto;
+      padding: 60px 80px;
+      text-align: center;
+    }
+
+    .frase-content {
+      background-color: #F2F2F2;
+      border: 2px solid #E0E0E0;
+      border-radius: 8px;
+      padding: 40px;
+      font-size: 24px;
+      font-weight: 600;
+      color: #1F1F1F;
+      line-height: 1.6;
+    }
+
+    /* FOOTER */
+    .footer {
+      width: 100%;
+      background-color: #A61E1E;
+      color: #FFFFFF;
+      padding: 40px 80px;
+      text-align: center;
+      font-size: 14px;
+      line-height: 1.8;
+      margin-top: 100px;
+    }
+
+    /* RESPONSIVE */
+    @media (max-width: 1024px) {
+      .hero {
+        flex-direction: column;
+        padding: 40px 40px;
+        gap: 40px;
+      }
+
+      .hero-text,
+      .hero-image {
+        flex: 1 1 100%;
+        max-width: 100%;
+      }
+
+      .vantaggi-container {
+        grid-template-columns: 1fr;
+        padding: 40px 40px;
+      }
+
+      .vantaggi-section,
+      .cta-section,
+      .frase-box {
+        padding: 40px 40px;
+      }
+
+      .header-content {
+        flex-direction: column;
+        gap: 15px;
+        text-align: center;
+      }
+
+      .nav {
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 15px;
+      }
+    }
+
+    @media (max-width: 768px) {
+      .hero-title {
+        font-size: 32px;
+      }
+
+      .section-title,
+      .cta-title {
+        font-size: 28px;
+      }
+
+      .frase-content {
+        font-size: 18px;
+      }
+
+      .btn {
+        width: 100%;
+        max-width: 260px;
+      }
+
+      .header, .footer {
+        padding: 20px;
+      }
+
+      .hero, .vantaggi-section, .cta-section, .frase-box {
+        padding: 30px 20px;
+      }
+    }
+  </style>
+  <style>body { box-sizing: border-box; }</style>
+  <script src="https://cdn.tailwindcss.com/3.4.17" type="text/javascript"></script>
+  <script src="https://cdn.jsdelivr.net/npm/lucide@0.263.0/dist/umd/lucide.min.js" type="text/javascript"></script>
+  <script src="/_sdk/data_sdk.js" type="text/javascript"></script>
+ </head>
+ <body>
+  <div class="wrapper"><!-- HEADER -->
+   <header class="header">
+    <div class="header-content">
+     <div class="logo">
+      OrientaUniTe
+     </div>
+     <nav class="nav">
+      Home | Corsi di Laurea | Dipartimenti | Servizi | Contatti
+     </nav>
+    </div>
+   </header><!-- HERO SECTION -->
+   <section class="hero">
+    <div class="hero-text">
+     <h1 class="hero-title">Scopri il corso giusto per te</h1>
+     <p class="hero-description">Fai il test orientativo e trova il percorso universitario più adatto ai tuoi interessi.</p><button class="btn">Inizia il test</button>
+    </div>
+<div class="hero-image">
+  <img src="https://images.unsplash.com/photo-1523240795612-9a054b0db644"
+       alt="Studenti universitari"
+       style="width:100%; height:100%; object-fit:cover; border-radius:6px;">
+</div>
+   </section><!-- VANTAGGI SECTION -->
+   <section class="vantaggi-section">
+    <h2 class="section-title">Perché usare OrientaUniTe?</h2>
+    <div class="vantaggi-container">
+     <div class="vantaggio-box">
+      <div>
+       <h3 class="vantaggio-title">Ricerca semplice</h3>
+       <p class="vantaggio-desc">Trova i corsi in pochi secondi grazie a ricerca e filtri avanzati.</p>
+      </div>
+     </div>
+     <div class="vantaggio-box">
+      <div>
+       <h3 class="vantaggio-title">Orientamento guidato</h3>
+       <p class="vantaggio-desc">Esplora aree tematiche e confronta i percorsi in modo chiaro.</p>
+      </div>
+     </div>
+     <div class="vantaggio-box">
+      <div>
+       <h3 class="vantaggio-title">Supporto immediato</h3>
+       <p class="vantaggio-desc">Accedi a UniBot, FAQ e Student Hub per chiarire i tuoi dubbi.</p>
+      </div>
+     </div>
+    </div>
+   </section><!-- CTA SECTION -->
+   <section class="cta-section">
+    <h2 class="cta-title">Inizia ora il tuo percorso universitario</h2><button class="btn">Scopri i corsi</button>
+   </section><!-- FRASE FINALE -->
+   <section class="frase-box">
+    <div class="frase-content">
+     "Inizia il corso OrientaUniTe?"
+    </div>
+   </section><!-- FOOTER -->
+   <footer class="footer">
+    UniTE | Privacy | Trasparenza | Servizi online | Contatti
+   </footer>
+  </div>
+ <script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'9e78f5db863cee4f',t:'MTc3NTM5NjM4Mi4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
+</html>
